@@ -1,5 +1,6 @@
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { MagicMotion } from "react-magic-motion";
 import { Wrapper } from './components/Wrapper'
 import { Form } from './components/Form'
 import { Grid } from './components/Grid'
@@ -25,11 +26,12 @@ function App() {
   return (
     <>
       <Wrapper>
-
         <h1 className="mt-16 font-bold text-[2rem] text-zinc-900">Usuários</h1>
         <div className="max-w-7xl">
+        <MagicMotion>
           <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers}/>
           <Grid setOnEdit={setOnEdit} users={users} setUsers={setUsers} />
+          </MagicMotion>
         <ToastContainer 
           position="top-right"
             autoClose={5000}
