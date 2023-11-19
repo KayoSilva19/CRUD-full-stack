@@ -1,4 +1,5 @@
 import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import { Wrapper } from './components/Wrapper'
 import { Form } from './components/Form'
 import { Grid } from './components/Grid'
@@ -23,15 +24,24 @@ function App() {
   }
   return (
     <>
-      <ToastContainer
-        autoClose={5000}
-        position={toast.POSITION.BOTTOM_CENTER}
-      />
       <Wrapper>
+
         <h1 className="mt-16 font-bold text-[2rem] text-zinc-900">Usuários</h1>
         <div className="max-w-7xl">
-          <Form />
-          <Grid users={users} />
+          <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers}/>
+          <Grid setOnEdit={setOnEdit} users={users} setUsers={setUsers} />
+        <ToastContainer 
+          position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+           
+            />
         </div>
       </Wrapper>
     </>
