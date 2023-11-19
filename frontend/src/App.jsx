@@ -9,9 +9,18 @@ function App() {
   const [users, setUsers] = useState([])
   const [onEdit, setOnEdit] = useState(null)
 
-  useEffect(() => {}, [setUsers])
+  useEffect(() => {
+    getUsers()
+  }, [setUsers])
 
-  async function getUsers() {}
+  async function getUsers() {
+    try {
+      const res = await axios.get('http://localhost:8080')
+      setUsers(res.data.sort((a, b) => (a.nome > b.nome ? 1 : -1)))
+    } catch (error) {
+      toast.error(error)
+    }
+  }
   return (
     <>
       <ToastContainer
@@ -22,7 +31,7 @@ function App() {
         <h1 className="mt-16 font-bold text-[2rem] text-zinc-900">Usuários</h1>
         <div className="max-w-7xl">
           <Form />
-          <Grid />
+          <Grid users={users} />
         </div>
       </Wrapper>
     </>
